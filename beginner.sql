@@ -61,6 +61,23 @@ AND budget > 100000000
 AND (language = 'French' OR language='Spanish');
 
 
+SELECT title, certification FROM films WHERE certification IN ('NC-17','R');            /*USING IN to elimiate multiple AND and OR*/
+
+
+/*NULL --> IS NULL is used in sql to check for values that have missing data */
+
+SELECT (*) FROM films WHERE titles IS NULL;         /*Returns total of null values in sql*/
+
+SELECT names FROM people WHERE birthdate IS NOT NULL    /*---> Returns name sof people leaving blank ones*/
+
+SELECT COUNT(*) FROM films WHERE language IS NULL;      /*-----> get total number of missing values in films*/
+
+
+
+/*LIKE & NOT LIKE*/
+
+
+
 
 
 
