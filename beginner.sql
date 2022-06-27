@@ -38,4 +38,32 @@ SELECT * FROM films WHERE release_year = 2016 /*returns all films released in 20
 
 SELECT COUNT(*) from films WHERE release_year < 2000 /*returns total number of films produced before 2000*/
 
+SELECT *  from films WHERE language = 'French'  /*returns all films in French*/
+
+SELECT title FROM films WHERE release_year > 1994 AND release_year < 2004;  /*Select between periods using and*/
+
+SELECT title, release_year FROM films WHERE release_year >= 1990 AND release_year <2000; /*Get moves between 90s*/
+
+
+SELECT title, release_year                              /*multi selet using AND & OR */
+FROM films
+WHERE (release_year >= 1990 AND release_year < 2000)
+AND (language = 'French' OR language = 'Spanish');
+
+
+SELECT title, release_year FROM films WHERE release_year BETWEEN 1990 AND 2000;  /*Using BETWEEN  to print values in a range*/
+
+
+SELECT title, release_year                             /*select using AND OR BETWEEN in a table*/
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+AND budget > 100000000
+AND (language = 'French' OR language='Spanish');
+
+
+
+
+
+
+
 
