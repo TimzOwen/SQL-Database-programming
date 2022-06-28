@@ -76,18 +76,58 @@ SELECT COUNT(*) FROM films WHERE language IS NULL;      /*-----> get total numbe
 
 /*LIKE & NOT LIKE*/
 /* use to get a specific match on a query using wirld card -- > '%'  or '_'*/
+/*'%' returns a qury which contains the char or '_' for specific match */
 
 SELECT name FROM companies WHERE name LIKE 'Timz_Owen'`;
 
 SELECT name FROM people WHERE name LIKE 'B%' /*Returns a query of names that starts with B*/
 
+SELECT name FROM people WHERE name LIKE '_r%';  /*returns name with r as the second char*/
+
+SELECT name FROM people WHERE name NOT LIKE 'A%'     /*returns names that dont start with A */
 
 
 
+/* SQL AGGREGATE FUNCTIONS */
+SELECT SUM(duration) FROM films;        /* get the total duration from films */
+
+SELECT AVG(duration) FROM films;     /* Gets the avarage of the duration in the movie */
+
+SELECT MIN(duration) FROM films;     /*returns the min value of a duration*/
+
+SELECT MAX(duration) FROM films;    /*returns the max duration of a given table*/
 
 
+/*Combine aggregate functions with WHERE*/
+
+SELECT SUM(gross) FROM films WHERE release_year >= 2000;    /*returns total gross for films after 2k inlc 2000*/
+
+SELECT AVG(gross) FROM films WHERE title LIKE 'A%'      /*returns the avarage of films starting with letter A*/
+
+SELECT MIN(gross) FROM films WHERE release_year = 1994;     /*gross amount by worst perfoming film in 1994*/
+
+SELECT MAX(gross) FROM films WHERE (release_year >=2000 AND release_year <=2020); /* returns max gross between the range */
 
 
+/* A note on Arithmetic */
 
+SELECT (4*3);           /*multiplication*/
+SELECT (4/3);           /*dividion of intergers returns full interger*/
+SELECT (4.0 / 3.0);     /*divion of decimal returns decimal*/
 
+/*Alisaing ---> Assing a temporary value to a query to hold the results temporarily. Uses 'AS' keyword*/
+
+SELECT MAX(duration) AS max_duration, MAX(gross) AS max_gross FROM films; 
+
+SELECT title, (gross - budget) AS net_profit FROM films;    /*get the profit from films*/
+
+SELECT title, (duration/60.0) AS duration_hours FROM films; /* duration in hours for all the films */
+
+SELECT AVG(duration)/60.0 AS avg_duration_hours FROM films;  /*get avarage hours of the films */
+
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percantage_dead FROM films;   /*get avg of dead*/
+
+SELECT MAX(release_year)-MIN(release_year) AS difference FROM films;    /*returns difference of first and last release year*/
+
+SELECT ((MAX(release_year) - MIN(release_year) / 10.0 )) AS decades FROM films; /*years in decades since produciton*/
 
