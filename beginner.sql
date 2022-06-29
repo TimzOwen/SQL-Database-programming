@@ -5,8 +5,8 @@ SELECT * FROM people;  /* show data in tables when you query a people table*/
 
 SELECT name FROM people; /*displays names of in a table called people*/
 
-SELECT 'DataCamp <3 SQL'  /*selected as db name and displayed*/
-AS result;
+SELECT 'DataCamp <3 SQL' AS result; /*selected as db name and displayed*/
+
 
 SELECT name, birthdate FROM people; /*select multiple columns from same table*/
 
@@ -45,21 +45,12 @@ SELECT title FROM films WHERE release_year > 1994 AND release_year < 2004;  /*Se
 SELECT title, release_year FROM films WHERE release_year >= 1990 AND release_year <2000; /*Get moves between 90s*/
 
 
-SELECT title, release_year                              /*multi selet using AND & OR */
-FROM films
-WHERE (release_year >= 1990 AND release_year < 2000)
-AND (language = 'French' OR language = 'Spanish');
-
+SELECT title, release_year FROM films WHERE (release_year >= 1990 AND release_year < 2000) AND (language = 'French' OR language = 'Spanish');   /*multi selet using AND & OR */
 
 SELECT title, release_year FROM films WHERE release_year BETWEEN 1990 AND 2000;  /*Using BETWEEN  to print values in a range*/
 
 
-SELECT title, release_year                             /*select using AND OR BETWEEN in a table*/
-FROM films
-WHERE release_year BETWEEN 1990 AND 2000
-AND budget > 100000000
-AND (language = 'French' OR language='Spanish');
-
+SELECT title, release_year FROM films WHERE release_year BETWEEN 1990 AND 2000 AND budget > 100000000 AND (language = 'French' OR language='Spanish');
 
 SELECT title, certification FROM films WHERE certification IN ('NC-17','R');            /*USING IN to elimiate multiple AND and OR*/
 
@@ -130,4 +121,72 @@ SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percantage_dead FROM films;   /*ge
 SELECT MAX(release_year)-MIN(release_year) AS difference FROM films;    /*returns difference of first and last release year*/
 
 SELECT ((MAX(release_year) - MIN(release_year) / 10.0 )) AS decades FROM films; /*years in decades since produciton*/
+
+
+/*Order by Asceding or Descending order ----> uses ORDER BY and the value ----->ASC or DESC*/
+
+SELECT name FROM people ORDER BY name;  /*list alphabetically*/
+
+SELECT title FROM films WHERE release_year IN(2000, 2012) ORDER BY release_year;    /*returns order of release in 2 or 2012*/
+
+SELECT * FROM films WHERE release_year <> 2015 ORDER BY duration;       /*Get all films not inclusive of 2015 order by duration*/
+
+SELECT title, gross FROM films WHERE title LIKE 'M%' ORDER BY title;    /*Get all films starting with M ordered by title*/
+
+
+/*Sorting single columns DESC*/
+
+SELECT imdb_score, film_id FROM reviews ORDER BY imdb_score DESC;   /*order in descending order*/
+
+SELECT title FROM films ORDER BY title DESC;    /*order in descedning order*/
+
+SELECT title, duration ORDER BY duration DESC;  /*order in longest to smallest*/
+
+
+
+/* Sorting Multiple columns ------>sorts by first column then next, and next and next column */
+
+SELECT birthdate, name FROM people ORDER BY name, birthdate;    /*ordering starts with column of namw*/
+
+SELECT release_year, title, duration FROM films ORDER BY release_year, title;   /* Year first then title */
+
+
+/* GROUP BY---->Allows you to group results in columns and count them . Always goes after FROM , ORDER BY goes afrer GROUP BY*/
+
+
+SELECT sex, COUNT(*) FROM employees GROUP BY sex ORDER BY COUNT DESC;   /* list in the order of the largest sum */
+
+SELECT release_year, COUNT(*) FROM films GROUP BY release_year ORDER BY release_year;   /* Group all count per year released*/
+
+SELECT release_year, AVG(duration) FROM films GROUP BY released;    /*avarage grouped per year*/
+
+SELECT release_year, MAX(budget) FROM films GROUP BY release_year;  /*grouping from max budget*/
+
+SELECT imdb_score, COUNT(*) FROM reviews GROUP BY imdb_score;   /* used idbm_score to count all occurances */
+
+SELECT release_year, MIN(gross) FROM films GROUP BY release_year;   /* min of gross */
+
+SELECT language,SUM(gross) FROm films GROUP BY language;
+ 
+SELECT country, SUM(budget) FROM films GROUP BY country;
+
+SElECT release_year,country,MAX(budget) FROM films GROUP BY release_year, country ORDER BY release,country;
+
+SELECT release_year,country,MIN(budget) FROM films GROUP BY release_year,country ORDER BY release_year, country;
+
+
+/*HAVING----->used to get a query that combines results from an aggregate function*/
+
+SELECT release_year FROM films GROUP BY release_year HAVING COUNT(title)>200; /*returns countries that made more than 200 films*/
+
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM films WHERE release_year > 1990 GROUP BY release_year HAVING AVG(budget) > 60000000 ORDER BY avg_gross DESC;
+
+
+
+
+
+
+
+
+
 
