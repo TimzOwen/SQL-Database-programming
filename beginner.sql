@@ -69,7 +69,7 @@ SELECT COUNT(*) FROM films WHERE language IS NULL;      /*-----> get total numbe
 /* use to get a specific match on a query using wirld card -- > '%'  or '_'*/
 /*'%' returns a qury which contains the char or '_' for specific match */
 
-SELECT name FROM companies WHERE name LIKE 'Timz_Owen'`;
+SELECT name FROM companies WHERE name LIKE 'Timz_Owen';
 
 SELECT name FROM people WHERE name LIKE 'B%' /*Returns a query of names that starts with B*/
 
