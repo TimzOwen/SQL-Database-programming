@@ -181,7 +181,11 @@ SELECT release_year FROM films GROUP BY release_year HAVING COUNT(title)>200; /*
 SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM films WHERE release_year > 1990 GROUP BY release_year HAVING AVG(budget) > 60000000 ORDER BY avg_gross DESC;
 
 /*Get the country, average budget, and average gross take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. 
-You should alias the averages as avg_budget and avg_gross respectively.*/
+You should alias the averages as avg_budget and avg_gross respectively.
+They hold names temproray when displaying values from table
+*/
 SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM films GROUP BY country HAVING COUNT(title)>10 ORDER BY country LIMIT 5;
+
+SELECT ProductName AS products, price AS Cash FROM Products_table  
 
 
