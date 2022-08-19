@@ -22,12 +22,11 @@ SELECT DISTINCT language FROM films; /*print unique values and leaves duplicates
 
 SELECT COUNT(*) from people; /*count the number of rows in a comlumn*/
 
-SELECT COUNT(birthdats) from people; /*count specific column in a table*/
+SELECT COUNT(birthdates) from people; /*count specific column in a table*/
 
 SELECT COUNT(DISTINCT birthdate) from people; /*query unique birthdates from people's table*/
 
 SELECT COUNT(DISTINCT language) from films; /*query unique language from films table*/
-
 
 
 
@@ -184,3 +183,5 @@ SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM fil
 /*Get the country, average budget, and average gross take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. 
 You should alias the averages as avg_budget and avg_gross respectively.*/
 SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM films GROUP BY country HAVING COUNT(title)>10 ORDER BY country LIMIT 5;
+
+
