@@ -186,6 +186,11 @@ They hold names temproray when displaying values from table
 */
 SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross FROM films GROUP BY country HAVING COUNT(title)>10 ORDER BY country LIMIT 5;
 
-SELECT ProductName AS products, price AS Cash FROM Products_table  
+SELECT ProductName AS products, price AS Cash FROM Products_table  /**/
+
+SELECT FirstName, LastName,city,State from Person left join Address on Person.PersonId =Address.PersonId; /*Joining tables*/
+
+
+
 
 
